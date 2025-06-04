@@ -4,21 +4,24 @@ import AboutUsPage from "./pages/AboutUsPage";
 import PostPage from "./pages/PostPage";
 import DefaultLayout from "./layouts/DefaultLayout";
 import PostDetailsPage from "./pages/PostDetailsPage";
+import { PostsProvider } from "./context/PostsContext";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutUsPage />} />
-            <Route path="/posts">
-              <Route path="" element={<PostPage />} />
-              <Route path=":id" element={<PostDetailsPage />} />
+      <PostsProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutUsPage />} />
+              <Route path="/posts">
+                <Route path="" element={<PostPage />} />
+                <Route path=":id" element={<PostDetailsPage />} />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </PostsProvider>
     </>
   );
 }
