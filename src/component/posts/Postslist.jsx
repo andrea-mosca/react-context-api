@@ -1,15 +1,8 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { usePosts } from "../../context/PostsContext";
 import { Link } from "react-router-dom";
 
 export default function PostList() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:3000/posts").then((res) => {
-      setPosts(res.data.data);
-    });
-  }, []);
+  const { posts } = usePosts();
   return (
     <div className="row row-cols-3">
       {posts.map((post) => (
